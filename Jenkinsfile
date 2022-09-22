@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Source') {
             steps {
-                git 'https://github.com/shanthshivam/SpringMysqlDemo.git'
+                git 'https://github.com/SushmithaNayak23/SpringMysqlDemo.git'
             }
         }
         
