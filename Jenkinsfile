@@ -21,7 +21,7 @@ pipeline {
                     script {
                         def mvnHome = tool 'LocalMaven'
                         withSonarQubeEnv() {
-                            bat "${mvnHome}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=demo_sonar"
+                            bat "${mvnHome}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=demo_mysql"
                         }
                     }
                 }
@@ -40,7 +40,7 @@ pipeline {
                             def server = Artifactory.server 'artifactory_instanceid'
                             def rtMaven = Artifactory.newMavenBuild()
                             //rtMaven.resolver server: server, releaseRepo: 'jenkins-devops', snapshotRepo: 'jenkins-devops-snapshot'
-                            rtMaven.deployer server: server, releaseRepo: 'sts_repo', snapshotRepo: 'sts_snapshot'
+                            rtMaven.deployer server: server, releaseRepo: 'mysql_repo', snapshotRepo: 'mysql_snapshot'
                             rtMaven.tool = 'LocalMaven'
                             
                             def buildInfo = rtMaven.run pom: '$workspace/pom.xml', goals: 'clean install'
